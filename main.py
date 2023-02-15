@@ -14,6 +14,15 @@ def foo(x):
     pass
 
 def longest_run(mylist, key):
+  greatestRun = 0
+  count = 0
+  for i in mylist:
+    if i == key:
+      count += 1
+    else:
+      greatestRun = max(greatestRun, count)
+      count == 0
+  return max(greatestRun, count)
     ### TODO
     pass
 
@@ -32,7 +41,32 @@ class Result:
     
     
 def longest_run_recursive(mylist, key):
-    ### TODO
+  if len(mylist) == 1:
+    mylist[0] == key
+    
+  middle = len(mylist) // 2
+  left = longest_run_recursive(mylist[0:middle], key)
+  right = longest_run_recursive(mylist[middle:], key)
+  l = left.left_size
+  r = right.right_size
+  greatestRun = 0
+
+  if left.is_entire_range:
+    l = middle
+  if right.is_entire_range:
+    r = len(mylist) - middle
+  if left.is_entire_range && right.is_entire_range:
+    return result 
+
+  if right.left_size > 0 && left.right_size > 0 || right.is_entire_range && left.right_size > 0 || left.is_entire_range && right.left_size > 0:
+    greatestRun = left.longest_size + right.longest_size
+  else:
+    greatestRun = max(right.longest_size, left.longest_size)
+
+  result = Result(l, r, greatestRun, False)
+  return result
+    
+  ### TODO
     pass
 
 ## Feel free to add your own tests here.
